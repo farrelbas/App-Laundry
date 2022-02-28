@@ -246,6 +246,18 @@ export default {
   created() {
     var user = JSON.parse(this.$store.state.datauser);
     this.nama = user.nama;
+    this.axios
+      .get("http://localhost/laundry_baru_8/public/api/login/check", {
+        headers: { Authorization: "Bearer " + this.$store.state.token },
+      })
+      .then((res) => {
+        if (!res.data.success) {
+          this.$store.commit("clearToken");
+          this.$store.commit("clearUser");
+          this.$awal("Error", "Sesi Anda Sudah Habis", "error");
+          this.$router.push("/login");
+        }
+      });
   },
   methods: {
     logout() {
