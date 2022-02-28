@@ -30,7 +30,31 @@
           <i class="icon-screen-desktop menu-icon"></i>
         </router-link>
       </li>
-      <li v-if="isAdmin || isKasir" class="nav-item">
+      <li class="nav-item">
+        <router-link class="nav-link" to="/member">
+          <span class="menu-title">Member</span>
+          <i class="icon-people menu-icon"></i>
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/paket">
+          <span class="menu-title">Paket</span>
+          <i class="icon-social-dropbox menu-icon"></i>
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/transaksi">
+          <span class="menu-title">Transaksi</span>
+          <i class="icon-social-tumblr menu-icon"></i>
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/report">
+          <span class="menu-title">Report</span>
+          <i class="icon-screen-desktop menu-icon"></i>
+        </router-link>
+      </li>
+      <!-- <li v-if="isAdmin || isKasir" class="nav-item">
         <router-link class="nav-link" to="/member">
           <span class="menu-title">Member</span>
           <i class="icon-people menu-icon"></i>
@@ -53,7 +77,7 @@
           <span class="menu-title">Report</span>
           <i class="icon-screen-desktop menu-icon"></i>
         </router-link>
-      </li>
+      </li> -->
     </ul>
   </nav>
 </template>

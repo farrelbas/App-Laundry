@@ -96,6 +96,13 @@ export default {
     };
   },
   created() {
+    var data = JSON.parse(this.$store.state.datauser);
+    var role = data.role;
+    if (role == "kasir" || role == "owner") {
+      this.$swal("Anda Tidak Dapat Mengakses Halaman Ini");
+      this.$router.push("/");
+    }
+
     this.axios
       .get("http://localhost/laundry_baru_8/public/api/get_paket", {
         headers: { Authorization: "Bearer" + this.$store.state.token },

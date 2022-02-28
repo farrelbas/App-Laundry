@@ -65,7 +65,7 @@
                                 <h5 class="text-center">
                                   Jl Danau Batur D1D NO 20 Malang
                                 </h5>
-                                <br><br>
+                                <br /><br />
                                 <table class="table table-striped text-center">
                                   <thead>
                                     <tr>
@@ -169,6 +169,13 @@ export default {
     var date = new Date();
     this.report.tahun = date.getFullYear();
     this.report.bulan = ("0" + (date.getMonth() + 1)).slice(-2);
+
+    var data = JSON.parse(this.$store.state.datauser);
+    var role = data.role;
+    if (role == "admin" || role == "kasir") {
+      this.$swal("Anda Tidak Dapat Mengakses Halaman Ini");
+      this.$router.push("/");
+    }
   },
   methods: {
     tampil() {
