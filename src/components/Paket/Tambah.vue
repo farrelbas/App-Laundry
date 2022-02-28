@@ -80,11 +80,15 @@ export default {
           "http://localhost/laundry_baru_8/public/api/insert_paket",
           this.paket,
           {
-            headers: { Authorization: "Bearer" + this.$store.state.token },
+            headers: { Authorization: `Bearer` + this.$store.state.token },
           }
         )
-        .then(() => {
-          this.$router.push("/paket");
+        .then((res) => {
+          if (res.data.success) {
+            // this.$router.push("/paket");
+            this.$swal("Sukses", res.data.message, "success");
+            this.$router.push("/paket");
+          }
         })
         .catch((err) => console.log(err));
     },

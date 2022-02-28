@@ -71,8 +71,12 @@ export default {
             headers: { Authorization: "Bearer" + this.$store.state.token },
           }
         )
-        .then(() => {
-          this.$router.push("/transaksi");
+        .then((res) => {
+          if (res.data.success) {
+            // this.$router.push("/transaksi");
+            this.$swal("Sukses", res.data.message, "success");
+            this.$router.push("/transaksi");
+          }
         })
         .catch((err) => console.log(err));
     },

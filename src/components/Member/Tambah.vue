@@ -93,7 +93,7 @@
                           type="text"
                           class="form-control"
                           id="exampleInputUsername2"
-                          placeholder="member.tlp"
+                          placeholder="Masukan Nomer Telepon"
                           v-model="member.tlp"
                         />
                       </div>
@@ -134,11 +134,15 @@ export default {
           "http://localhost/laundry_baru_8/public/api/insert_member",
           this.member,
           {
-            headers: { Authorization: "Bearer" + this.$store.state.token },
+            headers: { Authorization: `Bearer` + this.$store.state.token },
           }
         )
-        .then(() => {
-          this.$router.push("/member");
+        .then((res) => {
+          if (res.data.success) {
+            // this.$router.push("/member");
+            this.$swal("Sukses", res.data.message, "success");
+            this.$router.push("/member");
+          }
         })
         .catch((err) => console.log(err));
     },

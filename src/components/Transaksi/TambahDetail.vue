@@ -105,11 +105,18 @@ export default {
             headers: { Authorization: "Bearer" + this.$store.state.token },
           }
         )
-        .then(() => {
-          this.$router.push({
-            name: "detailtransaksi",
-            params: this.id_transaksi,
-          });
+        .then((res) => {
+          if (res.data.success) {
+            this.$swal("Sukses", res.data.message, "success");
+            this.$router.push({
+              name: "detailtransaksi",
+              params: this.id_transaksi,
+            });
+          }
+          // this.$router.push({
+          //   name: "detailtransaksi",
+          //   params: this.id_transaksi,
+          // });
         })
         .catch((err) => console.log(err));
     },
