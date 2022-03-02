@@ -45,7 +45,6 @@
                     id="exampleFormControlSelect2"
                     v-model="user.role"
                   >
-                    <option>Pick Role</option>
                     <option>ADMIN</option>
                     <option>KASIR</option>
                     <option>OWNER</option>

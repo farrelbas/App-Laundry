@@ -43,6 +43,12 @@
         </router-link>
       </li>
       <li class="nav-item">
+        <router-link class="nav-link" to="/outlet">
+          <span class="menu-title">Outet</span>
+          <i class="icon-home menu-icon"></i>
+        </router-link>
+      </li>
+      <li class="nav-item">
         <router-link class="nav-link" to="/transaksi">
           <span class="menu-title">Transaksi</span>
           <i class="icon-social-tumblr menu-icon"></i>

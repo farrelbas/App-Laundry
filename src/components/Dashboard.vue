@@ -7,7 +7,7 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <br /><br />
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-4 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -94,7 +94,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- Quick Action Toolbar Starts-->
           <div class="row quick-action-toolbar">
             <div class="col-md-12 grid-margin">
@@ -113,24 +113,40 @@
                   aria-label="Quick action buttons"
                 >
                   <div class="col-sm-6 col-md-3 p-3 text-center btn-wrapper">
-                    <button type="button" class="btn px-0">
-                      <i class="icon-user mr-2"></i> Add Client
-                    </button>
+                    <router-link
+                      type="button"
+                      class="btn px-0"
+                      :to="{ name: 'tambahmember' }"
+                    >
+                      <i class="icon-user mr-2"></i>
+                      Add Member
+                    </router-link>
                   </div>
                   <div class="col-sm-6 col-md-3 p-3 text-center btn-wrapper">
-                    <button type="button" class="btn px-0">
-                      <i class="icon-docs mr-2"></i> Create Quote
-                    </button>
+                    <router-link
+                      type="button"
+                      class="btn px-0"
+                      :to="{ name: 'tambahoutlet' }"
+                    >
+                      <i class="icon-docs mr-2"></i>
+                      Add Outlet
+                    </router-link>
                   </div>
                   <div class="col-sm-6 col-md-3 p-3 text-center btn-wrapper">
-                    <button type="button" class="btn px-0">
-                      <i class="icon-folder mr-2"></i> Enter Payment
-                    </button>
+                    <router-link
+                      type="button"
+                      class="btn px-0"
+                      :to="{ name: 'tambahtransaksi' }"
+                    >
+                      <i class="icon-folder mr-2"></i>
+                      Add Transaksi
+                    </router-link>
                   </div>
                   <div class="col-sm-6 col-md-3 p-3 text-center btn-wrapper">
-                    <button type="button" class="btn px-0">
-                      <i class="icon-book-open mr-2"></i>Create Invoice
-                    </button>
+                    <router-link type="button" class="btn px-0" to="/report">
+                      <i class="icon-book-open mr-2"></i>
+                      Create Report
+                    </router-link>
                   </div>
                 </div>
               </div>

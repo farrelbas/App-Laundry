@@ -31,6 +31,7 @@
                         <th>Status</th>
                         <th>Dibayar</th>
                         <th>Id User</th>
+                        <!-- <th>Outlet</th> -->
                         <th>Kegiatan</th>
                       </tr>
                     </thead>
@@ -76,6 +77,7 @@
                           >
                         </td>
                         <td>{{ t.id }}</td>
+                        <!-- <td>{{ t.id_outlet }}</td> -->
                         <td>
                           <router-link
                             type="button"

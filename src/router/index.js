@@ -17,6 +17,12 @@ import DetailPaket from '../components/Paket/Detail.vue'
 import EditPaket from '../components/Paket/Edit.vue'
 import TambahPaket from '../components/Paket/Tambah.vue'
 
+//PUNYA OUTLET
+import IndexOutlet from '../components/Outlet/Index.vue'
+import DetailOutlet from '../components/Outlet/Detail.vue'
+import EditOutlet from '../components/Outlet/Edit.vue'
+import TambahOutlet from '../components/Outlet/Tambah.vue'
+
 //PUNYA TRANSAKSI
 import IndexTransaksi from '../components/Transaksi/Index.vue'
 import DetailTransaksi from '../components/Transaksi/Detail.vue'
@@ -107,6 +113,37 @@ const routes = [
         path: '/tambahpaket',
         name: 'tambahpaket',
         component: TambahPaket,
+        meta: {
+            requireAuth: true
+        }
+    },
+    //PUNYA FOLDER OUTLET
+
+    {
+        path: '/outlet',
+        name: 'indexoutlet',
+        component: IndexOutlet,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/detail/:id',
+        name: 'detailoutlet',
+        component: DetailOutlet,
+    },
+    {
+        path: '/edit/:id',
+        name: 'editoutlet',
+        component: EditOutlet,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/tambahoutlet',
+        name: 'tambahoutlet',
+        component: TambahOutlet,
         meta: {
             requireAuth: true
         }
