@@ -13,16 +13,16 @@
                   <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                       <div class="card-body">
-                        <h4 class="card-title">Detail Member</h4>
+                        <h4 class="card-title">Detail Userr</h4>
                         <table class="table table-striped text-center">
                           <thead>
                             <tr>
                               <th class="font-weight-bold">Icon</th>
-                              <th class="font-weight-bold">Id Member</th>
-                              <th class="font-weight-bold">Nama</th>
-                              <th class="font-weight-bold">Alamat</th>
-                              <th class="font-weight-bold">Jenis Kelamin</th>
-                              <th class="font-weight-bold">Telepon</th>
+                              <th class="font-weight-bold">Id User</th>
+                              <th class="font-weight-bold">Username</th>
+                              <!-- <th class="font-weight-bold">Password</th> -->
+                              <th class="font-weight-bold">Role</th>
+                              <th class="font-weight-bold">Id Outlet</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -30,11 +30,11 @@
                               <td>
                                 <avataaars width="50" height="50"></avataaars>
                               </td>
-                              <td>{{ member.id_member }}</td>
-                              <td>{{ member.nama }}</td>
-                              <td>{{ member.alamat }}</td>
-                              <td>{{ member.jenis_kelamin }}</td>
-                              <td>{{ member.tlp }}</td>
+                              <td>{{ user.id }}</td>
+                              <td>{{ user.username }}</td>
+                              <!-- <td>{{ user.password }}</td> -->
+                              <td>{{ user.role }}</td>
+                              <td>{{ user.id_outlet }}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -42,10 +42,10 @@
                         <router-link
                           type="button"
                           class="btn btn-primary btn-rounded btn-fw"
-                          :to="{ path: '/member' }"
+                          :to="{ path: '/user' }"
                         >
                           <i class="icon-cloud-upload btn-icon-prepend"></i>
-                          Member Home
+                          User Home
                         </router-link>
                       </div>
                     </div>
@@ -68,17 +68,17 @@ export default {
   },
   data() {
     return {
-      member: {},
+      user: {},
     };
   },
   created() {
     this.axios
       .get(
-        `http://localhost/laundry_baru_8/public/api/get_member_id/${this.$route.params.id}`,
+        `http://localhost/laundry_baru_8/public/api/get_user_id/${this.$route.params.id}`,
         { headers: { Authorization: "Bearer" + this.$store.state.token } }
       )
       .then((res) => {
-        this.member = res.data;
+        this.user = res.data;
       })
       .catch((err) => console.log(err));
   },

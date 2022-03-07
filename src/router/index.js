@@ -30,6 +30,12 @@ import EditTransaksi from '../components/Transaksi/Edit.vue'
 import TambahTransaksi from '../components/Transaksi/Tambah.vue'
 import TambahDetailTransaksi from '../components/Transaksi/TambahDetail.vue'
 
+//PUNYA USER
+import IndexUser from '../components/User/Index.vue'
+import DetailUser from '../components/User/Detail.vue'
+import EditUser from '../components/User/Edit.vue'
+import TambahUser from '../components/User/Tambah.vue'
+
 //PUNYA REPORT
 import Report from '../components/Report/Index.vue'
 
@@ -185,6 +191,37 @@ const routes = [
         path: '/detail/tambah/:id',
         name: 'tambahdetail',
         component: TambahDetailTransaksi,
+        meta: {
+            requireAuth: true
+        }
+    },
+    //PUNYA USER
+
+    {
+        path: '/user',
+        name: 'indexuser',
+        component: IndexUser,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/detail/:id',
+        name: 'detailuser',
+        component: DetailUser,
+    },
+    {
+        path: '/edit/:id',
+        name: 'edituser',
+        component: EditUser,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/tambahuser',
+        name: 'tambahuser',
+        component: TambahUser,
         meta: {
             requireAuth: true
         }

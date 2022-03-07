@@ -20,6 +20,7 @@
                       >
                       <div class="col-sm-9">
                         <input
+                          disabled
                           type="text"
                           class="form-control"
                           id="exampleInputUsername2"

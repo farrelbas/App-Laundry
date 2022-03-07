@@ -60,6 +60,12 @@
           <i class="icon-screen-desktop menu-icon"></i>
         </router-link>
       </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/user">
+          <span class="menu-title">User</span>
+          <i class="icon-user menu-icon"></i>
+        </router-link>
+      </li>
       <!-- <li v-if="isAdmin || isKasir" class="nav-item">
         <router-link class="nav-link" to="/member">
           <span class="menu-title">Member</span>

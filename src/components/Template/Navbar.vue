@@ -175,11 +175,7 @@
             data-toggle="dropdown"
             aria-expanded="false"
           >
-            <img
-              class="img-xs rounded-circle ml-2"
-              src="images/faces/face8.jpg"
-              alt="Profile image"
-            />
+            <avataaars width="30" height="30"></avataaars>
             <span class="font-weight-normal"> {{ nama }} </span></a
           >
           <div
@@ -187,11 +183,7 @@
             aria-labelledby="UserDropdown"
           >
             <div class="dropdown-header text-center">
-              <img
-                class="img-md rounded-circle"
-                src="images/faces/face8.jpg"
-                alt="Profile image"
-              />
+              <avataaars width="50" height="50"></avataaars>
               <p class="mb-1 mt-3">{{ nama }}</p>
               <!-- <p class="font-weight-light text-muted mb-0">
                 {{ role }}
@@ -237,7 +229,11 @@
 </template>
 
 <script>
+import Avataaars from "vuejs-avataaars";
 export default {
+  components: {
+    Avataaars,
+  },
   data() {
     return {
       nama: "",
