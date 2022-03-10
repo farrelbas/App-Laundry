@@ -44,7 +44,7 @@
                         />
                       </div>
                     </div>
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                       <label
                         for="exampleInputUsername2"
                         class="col-sm-3 col-form-label"
@@ -57,7 +57,7 @@
                           v-model="detail.subtotal"
                         />
                       </div>
-                    </div>
+                    </div> -->
                     <input type="hidden" v-model="detail.id_transaksi" />
                     <button type="submit" class="btn btn-primary mr-2">
                       Submit

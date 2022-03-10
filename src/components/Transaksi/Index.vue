@@ -77,9 +77,8 @@
                           >
                         </td>
                         <td>{{ t.id }}</td>
-                        <!-- <td>{{ t.id_outlet }}</td> -->
                         <td>
-                          <router-link
+                          <!-- <router-link
                             type="button"
                             class="btn btn-inverse-primary btn-rounded btn-icon"
                             :to="{
@@ -91,7 +90,7 @@
                             }"
                           >
                             <i class="icon-settings"></i>
-                          </router-link>
+                          </router-link> -->
                           <router-link
                             type="button"
                             class="btn btn-inverse-success btn-rounded btn-icon"
@@ -105,13 +104,6 @@
                           >
                             <i class="icon-info"></i>
                           </router-link>
-                          <!-- <button
-                            type="button"
-                            class="btn btn-inverse-danger btn-rounded btn-icon"
-                            @click="hapus(p.id_paket)"
-                          >
-                            <i class="icon-ban"></i>
-                          </button> -->
                         </td>
                       </tr>
                     </tbody>
@@ -147,7 +139,7 @@ export default {
     var data = JSON.parse(this.$store.state.datauser);
     var role = data.role;
     if (role == "owner") {
-      this.$swal("Anda Tidak Dapat Mengakses Halaman Ini");
+      this.$swal("Failed","Anda Tidak Dapat Mengakses Halaman Ini", "error");
       this.$router.push("/");
     }
 

@@ -26,7 +26,7 @@ import TambahOutlet from '../components/Outlet/Tambah.vue'
 //PUNYA TRANSAKSI
 import IndexTransaksi from '../components/Transaksi/Index.vue'
 import DetailTransaksi from '../components/Transaksi/Detail.vue'
-import EditTransaksi from '../components/Transaksi/Edit.vue'
+// import EditTransaksi from '../components/Transaksi/Edit.vue'
 import TambahTransaksi from '../components/Transaksi/Tambah.vue'
 import TambahDetailTransaksi from '../components/Transaksi/TambahDetail.vue'
 
@@ -163,14 +163,14 @@ const routes = [
             requireAuth: true
         }
     },
-    {
-        path: '/edit/:id',
-        name: 'edittransaksi',
-        component: EditTransaksi,
-        meta: {
-            requireAuth: true
-        }
-    },
+    // {
+    //     path: '/edit/:id',
+    //     name: 'edittransaksi',
+    //     component: EditTransaksi,
+    //     meta: {
+    //         requireAuth: true
+    //     }
+    // },
     {
         path: '/tambahtransaksi',
         name: 'tambahtransaksi',

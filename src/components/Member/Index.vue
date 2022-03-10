@@ -177,7 +177,7 @@ export default {
     var data = JSON.parse(this.$store.state.datauser);
     var role = data.role;
     if (role == "owner") {
-      this.$swal("Anda tidak dapat mengakses halaman ini");
+      this.$swal("Failed","Anda Tidak Dapat Mengakses Halaman Ini", "error");
       this.$router.push("/");
     }
 

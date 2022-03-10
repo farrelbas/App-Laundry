@@ -86,13 +86,20 @@
                         >Id Outlet</label
                       >
                       <div class="col-sm-9">
-                        <input
-                          type="text"
+                        <select
                           class="form-control"
-                          id="exampleInputUsername2"
-                          placeholder="Masukan Id Outlet"
+                          placeholder="Pick Outlet"
+                          id="exampleFormControlSelect2"
                           v-model="user.id_outlet"
-                        />
+                        >
+                          <option
+                            v-for="(o, index) in outlet"
+                            :key="index"
+                            :value="o.id_outlet"
+                          >
+                            {{o.nama}}
+                          </option>
+                        </select>
                       </div>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">
@@ -116,8 +123,20 @@ export default {
   data() {
     return {
       user: {},
+      outlet: {},
     };
   },
+  created() {
+    this.axios
+      .get("http://localhost/laundry_baru_8/public/api/get_outlet", {
+        headers: { Authorization: `Bearer` + this.$store.state.token },
+      })
+      .then((res) => {
+        this.outlet = res.data;
+      })
+      .catch((err) => console.log(err));
+  },
+
   methods: {
     tambah() {
       this.axios

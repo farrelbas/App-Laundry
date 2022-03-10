@@ -31,7 +31,7 @@
                                 <th class="font-weight-bold">ID User</th>
                                 <th class="font-weight-bold">Nama</th>
                                 <th class="font-weight-bold">Username</th>
-                                <th class="font-weight-bold">Password</th>
+                                <!-- <th class="font-weight-bold">Password</th> -->
                                 <th class="font-weight-bold">Role</th>
                                 <th class="font-weight-bold">Id Outlet</th>
                               </tr>
@@ -47,9 +47,9 @@
                                 <td>
                                   {{ u.username }}
                                 </td>
-                                <td>
+                                <!-- <td>
                                   {{ u.password }}
-                                </td>
+                                </td> -->
                                 <td>
                                   {{ u.role }}
                                 </td>
@@ -175,7 +175,7 @@ export default {
     var data = JSON.parse(this.$store.state.datauser);
     var role = data.role;
     if (role == "owner" || role == "kasir") {
-      this.$swal("Anda tidak dapat mengakses halaman ini");
+      this.$swal("Failed","Anda Tidak Dapat Mengakses Halaman Ini", "error");
       this.$router.push("/");
     }
 
