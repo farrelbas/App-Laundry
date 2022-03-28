@@ -17,6 +17,7 @@
                         <th>ID Paket</th>
                         <th>Jenis</th>
                         <th>Harga</th>
+                        <th>Kegiatan</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -31,32 +32,40 @@
                           {{ p.harga }}
                         </td>
                         <td>
-                          <router-link
+                          <button
                             type="button"
                             class="btn btn-inverse-primary btn-rounded btn-icon"
-                            :to="{
-                              name: 'editpaket',
-                              params: {
-                                id: p.id_paket,
-                                params: { id: p.id_paket },
-                              },
-                            }"
                           >
-                            <i class="icon-settings"></i>
-                          </router-link>
-                          <router-link
+                            <router-link
+                              :to="{
+                                name: 'editpaket',
+                                params: {
+                                  id: p.id_paket,
+                                  params: { id: p.id_paket },
+                                },
+                              }"
+                            >
+                              <i class="icon-settings"></i>
+                            </router-link>
+                          </button>
+                          &nbsp;
+                          <button
                             type="button"
                             class="btn btn-inverse-success btn-rounded btn-icon"
-                            :to="{
-                              name: 'detailpaket',
-                              params: {
-                                id: p.id_paket,
-                                params: { id: p.id_paket },
-                              },
-                            }"
                           >
-                            <i class="icon-info"></i>
-                          </router-link>
+                            <router-link
+                              :to="{
+                                name: 'detailpaket',
+                                params: {
+                                  id: p.id_paket,
+                                  params: { id: p.id_paket },
+                                },
+                              }"
+                            >
+                              <i class="icon-info"></i>
+                            </router-link>
+                          </button>
+                          &nbsp;
                           <button
                             type="button"
                             class="btn btn-inverse-danger btn-rounded btn-icon"
@@ -99,7 +108,7 @@ export default {
     var data = JSON.parse(this.$store.state.datauser);
     var role = data.role;
     if (role == "kasir" || role == "owner") {
-      this.$swal("Failed","Anda Tidak Dapat Mengakses Halaman Ini", "error");
+      this.$swal("Failed", "Anda Tidak Dapat Mengakses Halaman Ini", "error");
       this.$router.push("/");
     }
 

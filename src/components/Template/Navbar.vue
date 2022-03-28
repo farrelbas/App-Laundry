@@ -15,14 +15,15 @@
       <!-- <a class="navbar-brand brand-logo" href="index.html">
         <img src="images/logo.svg" alt="logo" class="logo-dark" />
       </a> -->
-      <a class="navbar-brand brand-logo-mini" href="index.html"
+      <!-- <a class="navbar-brand brand-logo-mini" href="index.html"
         ><img src="images/logo-mini.svg" alt="logo"
-      /></a>
+      /></a> -->
+      <!-- <a class="navbar-brand"><img src="images/Laundry.png" alt=""></a> -->
     </div>
     <!-- END LOGO -->
     <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
       <h5 class="mb-0 font-weight-medium d-none d-lg-flex">
-        Welcome {{ nama }} Laundry Dashboard!
+        Welcome {{ name }} Laundry {{ nama_outlet }}!
       </h5>
       <ul class="navbar-nav navbar-nav-right ml-auto">
         <form class="search-form d-none d-md-block" action="#">
@@ -176,7 +177,7 @@
             aria-expanded="false"
           >
             <avataaars width="30" height="30"></avataaars>
-            <span class="font-weight-normal"> {{ nama }} </span></a
+            <span class="font-weight-normal"> {{ name }} </span></a
           >
           <div
             class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -184,7 +185,7 @@
           >
             <div class="dropdown-header text-center">
               <avataaars width="50" height="50"></avataaars>
-              <p class="mb-1 mt-3">{{ nama }}</p>
+              <p class="mb-1 mt-3">{{ nama_outlet }}</p>
               <!-- <p class="font-weight-light text-muted mb-0">
                 {{ role }}
               </p> -->
@@ -236,12 +237,17 @@ export default {
   },
   data() {
     return {
-      nama: "",
+      name: "",
+      nama_outlet: "",
     };
   },
   created() {
+    var data = JSON.parse(this.$store.state.dataoutlet);
+    var namaoutlet = data.nama;
+    this.nama_outlet = namaoutlet;
+
     var user = JSON.parse(this.$store.state.datauser);
-    this.nama = user.nama;
+    this.name = user.name;
     this.axios
       .get("http://localhost/laundry_baru_8/public/api/login/check", {
         headers: { Authorization: "Bearer " + this.$store.state.token },

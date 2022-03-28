@@ -39,7 +39,7 @@
                           type="text"
                           class="form-control"
                           id="exampleInputUsername2"
-                          placeholder="Masukan Harga"
+                          placeholder="Masukan Alamat"
                           v-model="outlet.alamat"
                         />
                       </div>
@@ -47,7 +47,14 @@
                     <button type="submit" class="btn btn-primary mr-2">
                       Submit
                     </button>
-                    <button class="btn btn-light">Cancel</button>
+                    <router-link
+                      type="button"
+                      class="btn btn-light"
+                      :to="{
+                        name: 'indexoutlet',
+                      }"
+                      >Cancel
+                    </router-link>
                   </form>
                 </div>
               </div>

@@ -68,14 +68,11 @@
                   </div>
                 </div>
                 <br /><br />
-                <!-- <div class="card-header py-3">
-                  <h4 class="card-title">Data Transaksi</h4>
-                </div> -->
                 <div class="report">
                   <VueHtml2pdf
                     :show-layout="true"
                     :float-layout="false"
-                    :enable-download="true"
+                    :enable-download="false"
                     :preview-modal="true"
                     :paginate-elements-by-height="1400"
                     filename="Struk Laundry"
@@ -110,7 +107,9 @@
                             <tr v-if="total != ''">
                               <td colspan="3" class="text-right">Total</td>
                               <td>
-                                <h6 class="text font-weight-bold">Rp {{ total }}</h6>
+                                <h6 class="text font-weight-bold">
+                                  Rp {{ total }}
+                                </h6>
                               </td>
                             </tr>
                           </tbody>
@@ -121,14 +120,15 @@
                   <br />
                   <div class="col-md-18 grid-margin stretch-card">
                     <button
+                      :disabled="disableStruk"
                       type="button"
-                      @click="generateReport"
                       class="btn btn-dark"
+                      @click="generateReport"
                     >
                       <i class="icon-printer"></i>
                       Cetak Struk
                     </button>
-                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <button
                       :disabled="disableBayar"
                       type="button"
@@ -152,53 +152,6 @@
                     >
                   </div>
                 </div>
-                <!-- <div class="card-body">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>Jenis</th>
-                        <th>Jumlah (KG / Satuan)</th>
-                        <th>Subtotal</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(d, index) in detail" :key="index">
-                        <td>{{ index + 1 }}</td>
-                        <td>{{ d.jenis }}</td>
-                        <td>{{ d.quantity }}</td>
-                        <td>Rp {{ d.subtotal }}</td>
-                      </tr>
-                      <tr v-if="total != ''">
-                        <td colspan="3" class="text-right">Total</td>
-                        <td>
-                          <h6 class="font-weight-bold">Rp {{ total }}</h6>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <button
-                    :disabled="disableBayar"
-                    type="button"
-                    class="btn btn-success mr-3"
-                    @click="bayar"
-                  >
-                    Bayar
-                  </button>
-                  <router-link
-                    v-if="
-                      transaksi.status != 'Diambil' &&
-                      transaksi.status != 'Selesai' &&
-                      transaksi.dibayar != 'Dibayar'
-                    "
-                    :to="{
-                      name: 'tambahdetail',
-                      params: { id: this.id_transaksi },
-                    }"
-                    class="btn btn-primary"
-                    >Tambah Detail Transaksi</router-link
-                  >
-                </div> -->
               </div>
               <footer-component></footer-component>
             </div>
@@ -294,6 +247,13 @@ export default {
         this.transaksi.status == "proses" ||
         this.transaksi.status == "diambil"
       ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    disableStruk() {
+      if (this.transaksi.status == "baru") {
         return true;
       } else {
         return false;

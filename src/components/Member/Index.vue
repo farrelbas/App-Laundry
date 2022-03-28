@@ -16,6 +16,28 @@
                         <div class="d-sm-flex align-items-center mb-4">
                           <h4 class="card-title mb-sm-0">Our Member</h4>
                         </div>
+                        <div class="form-group">
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="search"
+                              v-model="search"
+                              placeholder="Search Name"
+                              aria-label="Recipient's username"
+                              aria-describedby="basic-addon2"
+                            />
+                            <div class="input-group-append">
+                              <button
+                                class="btn btn-sm btn-primary"
+                                v-on:click="cari_data()"
+                                type="button"
+                              >
+                                Search
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                         <div
                           class="
                             table-responsive
@@ -36,10 +58,6 @@
                                 <th class="font-weight-bold">Kegiatan</th>
                               </tr>
                             </thead>
-                            <!-- <tbody
-                              v-for="member in member"
-                              :key="member.id_member"
-                            > -->
                             <tbody>
                               <tr v-for="(m, index) in member" :key="index">
                                 <td>
@@ -58,7 +76,7 @@
                                   {{ m.tlp }}
                                 </td>
                                 <td>
-                                  <router-link
+                                  <button
                                     type="button"
                                     class="
                                       btn
@@ -66,17 +84,21 @@
                                       btn-rounded
                                       btn-icon
                                     "
-                                    :to="{
-                                      name: 'editmember',
-                                      params: {
-                                        id: m.id_member,
-                                        params: { id: m.id_member },
-                                      },
-                                    }"
                                   >
-                                    <i class="icon-settings"></i>
-                                  </router-link>
-                                  <router-link
+                                    <router-link
+                                      :to="{
+                                        name: 'editmember',
+                                        params: {
+                                          id: m.id_member,
+                                          params: { id: m.id_member },
+                                        },
+                                      }"
+                                    >
+                                      <i class="icon-settings"></i>
+                                    </router-link>
+                                  </button>
+                                  &nbsp;
+                                  <button
                                     type="button"
                                     class="
                                       btn
@@ -84,16 +106,20 @@
                                       btn-rounded
                                       btn-icon
                                     "
-                                    :to="{
-                                      name: 'detailmember',
-                                      params: {
-                                        id: m.id_member,
-                                        params: { id: m.id_member },
-                                      },
-                                    }"
                                   >
-                                    <i class="icon-info"></i>
-                                  </router-link>
+                                    <router-link
+                                      :to="{
+                                        name: 'detailmember',
+                                        params: {
+                                          id: m.id_member,
+                                          params: { id: m.id_member },
+                                        },
+                                      }"
+                                    >
+                                      <i class="icon-info"></i>
+                                    </router-link>
+                                  </button>
+                                  &nbsp;
                                   <button
                                     type="button"
                                     class="
@@ -102,7 +128,7 @@
                                       btn-rounded
                                       btn-icon
                                     "
-                                    @click="hapus(m.id_member)"
+                                    @click="deleteMember(m.id_member)"
                                   >
                                     <i class="icon-ban"></i>
                                   </button>
@@ -111,6 +137,7 @@
                             </tbody>
                           </table>
                         </div>
+                        <br /><br />
                         <router-link
                           type="button"
                           class="btn btn-primary btn-rounded btn-fw"
@@ -167,27 +194,29 @@
 
 <script>
 export default {
+  name: "Member",
   data() {
     return {
       responseData: [],
       member: {},
+      search: "",
     };
   },
   created() {
     var data = JSON.parse(this.$store.state.datauser);
     var role = data.role;
     if (role == "owner") {
-      this.$swal("Failed","Anda Tidak Dapat Mengakses Halaman Ini", "error");
+      this.$Swal("Failed", "Anda Tidak Dapat Mengakses Halaman Ini", "error");
       this.$router.push("/");
     }
 
-    this.axios
-      .get("http://localhost/laundry_baru_8/public/api/get_member", {
-        headers: { Authorization: "Bearer" + this.$store.state.token },
-      })
-      .then((res) => {
-        this.member = res.data;
-      });
+    // this.axios
+    //   .get("http://localhost/laundry_baru_8/public/api/get_member", {
+    //     headers: { Authorization: "Bearer" + this.$store.state.token },
+    //   })
+    //   .then((res) => {
+    //     this.member = res.data;
+    //   });
   },
   // computed: {
   //   logItemsCount() {
@@ -205,19 +234,73 @@ export default {
   //     });
   // },
   methods: {
-    hapus(id_member) {
+    dt_member: function () {
       this.axios
-        .delete(
-          `http://localhost/laundry_baru_8/public/api/delete_member/${id_member}`,
-          {
-            headers: { Authorization: `Bearer ` + this.$store.state.token },
-          }
-        )
-        .then(() => {
-          let i = this.member.map((item) => item.id_member).indexOf(id_member);
-          this.member.splice(i, 1);
+        .get("http://localhost/laundry_baru_8/public/api/get_member", {
+          headers: { Authorization: `Bearer` + this.$store.state.token },
+        })
+        .then((res) => {
+          this.member = res.data;
         });
     },
+    cari_data: function () {
+      var data_cari = "";
+      if (this.search == "") {
+        data_cari = "";
+      } else {
+        data_cari = "/" + this.search;
+      }
+      this.axios
+        .get(
+          "http://localhost/laundry_baru_8/public/api/get_member" + data_cari,
+          {
+            headers: { Authorization: `Bearer` + this.$store.state.token },
+          }
+        )
+        .then((res) => {
+          this.member = res.data;
+        });
+    },
+    deleteMember(id_member) {
+      this.$swal({
+        title: "Are you sure?",
+        text: "You can't revert your action",
+        type: "Warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes Delete it!",
+        cancelButtonText: "No, Keep it!",
+        showCloseButton: true,
+        showLoaderOnConfirm: true,
+      }).then((result) => {
+        if (result.value) {
+          this.$swal(
+            "Deleted",
+            "You successfully deleted this file",
+            "success",
+            this.axios
+              .delete(
+                `http://localhost/laundry_baru_8/public/api/delete_member/${id_member}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ` + this.$store.state.token,
+                  },
+                }
+              )
+              .then(() => {
+                let i = this.member
+                  .map((item) => item.id_member)
+                  .indexOf(id_member);
+                this.member.splice(i, 1);
+              })
+          );
+        } else {
+          this.$swal("Cancelled", "Your Data Is Still Intact", "info");
+        }
+      });
+    },
+  },
+  mounted() {
+    this.dt_member();
   },
 };
 </script>

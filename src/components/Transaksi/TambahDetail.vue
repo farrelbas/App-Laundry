@@ -44,25 +44,18 @@
                         />
                       </div>
                     </div>
-                    <!-- <div class="form-group row">
-                      <label
-                        for="exampleInputUsername2"
-                        class="col-sm-3 col-form-label"
-                        >Subtotal</label
-                      >
-                      <div class="col-sm-9">
-                        <input
-                          type="text"
-                          class="form-control"
-                          v-model="detail.subtotal"
-                        />
-                      </div>
-                    </div> -->
                     <input type="hidden" v-model="detail.id_transaksi" />
                     <button type="submit" class="btn btn-primary mr-2">
                       Submit
                     </button>
-                    <button class="btn btn-light">Cancel</button>
+                    <router-link
+                      type="button"
+                      class="btn btn-light"
+                      :to="{
+                        name: 'detailtransaksi',
+                      }"
+                      >Cancel
+                    </router-link>
                   </form>
                 </div>
               </div>
@@ -85,9 +78,15 @@ export default {
     };
   },
   created() {
+    var data = JSON.parse(this.$store.state.datauser);
+    var role = data.role;
+    if (role == "owner") {
+      this.$swal("Failed", "Anda Tidak Dapat Mengakses Halaman Ini", "error");
+      this.$router.push("/");
+    }
     this.axios
       .get("http://localhost/laundry_baru_8/public/api/get_paket", {
-        headers: { Authorization: "Bearer" + this.$store.state.token },
+        headers: { Authorization: `Bearer` + this.$store.state.token },
       })
       .then((res) => {
         this.paket = res.data;
@@ -102,7 +101,7 @@ export default {
           "http://localhost/laundry_baru_8/public/api/transaksi/detail/tambah",
           this.detail,
           {
-            headers: { Authorization: "Bearer" + this.$store.state.token },
+            headers: { Authorization: `Bearer` + this.$store.state.token },
           }
         )
         .then((res) => {
@@ -113,10 +112,6 @@ export default {
               params: this.id_transaksi,
             });
           }
-          // this.$router.push({
-          //   name: "detailtransaksi",
-          //   params: this.id_transaksi,
-          // });
         })
         .catch((err) => console.log(err));
     },

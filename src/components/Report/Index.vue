@@ -61,9 +61,9 @@
                             >
                               <section slot="pdf-content">
                                 <h1 class="text-center">Report Transaksi</h1>
-                                <h3 class="text-center">Laundry Online</h3>
+                                <h3 class="text-center">{{ outlet.nama }}</h3>
                                 <h5 class="text-center">
-                                  Jl Danau Batur D1D NO 20 Malang
+                                  {{ outlet.alamat }}
                                 </h5>
                                 <br /><br />
                                 <table class="table table-striped text-center">
@@ -80,6 +80,7 @@
                                       <th class="font-weight-bold">
                                         Nominal Pembayaran
                                       </th>
+                                      <th class="font-weight-bold">Petugas</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -92,15 +93,22 @@
                                       <td>
                                         {{ t.tgl_order | moment("DD/MM/YYYY") }}
                                       </td>
-                                      <td>
+                                      <td v-if="t.tgl_bayar === null">-</td>
+                                      <td v-else>
                                         {{ t.tgl_bayar | moment("DD/MM/YYYY") }}
                                       </td>
-                                      <td>Rp {{ t.subtotal }}</td>
+                                      <td v-if="t.subtotal === null">-</td>
+                                      <td v-else>Rp {{ t.subtotal }}</td>
+                                      <!-- <td>
+                                        {{ t.tgl_bayar | moment("DD/MM/YYYY") }}
+                                      </td> -->
+                                      <td>{{ t.name }}</td>
                                     </tr>
                                   </tbody>
                                 </table>
                                 <div>
-                                  <h6>Jumlah</h6>
+                                  <span>Jumlah</span>
+                                  <!-- <h6>{{ data.pendapatan }}</h6> -->
                                 </div>
                               </section>
                             </VueHtml2pdf>
@@ -163,19 +171,24 @@ export default {
     return {
       report: {},
       transaksi: {},
+      outlet: {},
+      // data: {},
+      // pendapatan: {},
     };
   },
   created() {
+    var data = JSON.parse(this.$store.state.dataoutlet);
+    this.outlet = data;
+    
     var date = new Date();
     this.report.tahun = date.getFullYear();
     this.report.bulan = ("0" + (date.getMonth() + 1)).slice(-2);
 
-    var data = JSON.parse(this.$store.state.datauser);
-    var role = data.role;
-    if (role == "admin" || role == "kasir") {
-      this.$swal("Failed","Anda Tidak Dapat Mengakses Halaman Ini", "error");
-      this.$router.push("/");
-    }
+    // this.axios
+    //   .post("http://localhost/laundry_baru_8/public/api/jumlahPendapatan")
+    //   .then((res) => {
+    //     this.pendapatan = res.data;
+    //   });
   },
   methods: {
     tampil() {

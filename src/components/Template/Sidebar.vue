@@ -27,28 +27,28 @@
       <li class="nav-item">
         <router-link class="nav-link" to="/">
           <span class="menu-title">Dashboard</span>
-          <i class="icon-screen-desktop menu-icon"></i>
+          <i class="icon-home menu-icon"></i>
         </router-link>
       </li>
-      <li class="nav-item">
+      <li v-if="isAdmin || isKasir" class="nav-item">
         <router-link class="nav-link" to="/member">
           <span class="menu-title">Member</span>
           <i class="icon-people menu-icon"></i>
         </router-link>
       </li>
-      <li class="nav-item">
+      <li v-if="isAdmin" class="nav-item">
         <router-link class="nav-link" to="/paket">
           <span class="menu-title">Paket</span>
           <i class="icon-social-dropbox menu-icon"></i>
         </router-link>
       </li>
-      <li class="nav-item">
+      <li v-if="isAdmin" class="nav-item">
         <router-link class="nav-link" to="/outlet">
-          <span class="menu-title">Outet</span>
-          <i class="icon-home menu-icon"></i>
+          <span class="menu-title">Outlet</span>
+          <i class="icon-basket-loaded menu-icon"></i>
         </router-link>
       </li>
-      <li class="nav-item">
+      <li v-if="isAdmin || isKasir" class="nav-item">
         <router-link class="nav-link" to="/transaksi">
           <span class="menu-title">Transaksi</span>
           <i class="icon-social-tumblr menu-icon"></i>
@@ -57,39 +57,15 @@
       <li class="nav-item">
         <router-link class="nav-link" to="/report">
           <span class="menu-title">Report</span>
-          <i class="icon-screen-desktop menu-icon"></i>
+          <i class="icon-note menu-icon"></i>
         </router-link>
       </li>
-      <li class="nav-item">
+      <li v-if="isAdmin" class="nav-item">
         <router-link class="nav-link" to="/user">
           <span class="menu-title">User</span>
           <i class="icon-user menu-icon"></i>
         </router-link>
       </li>
-      <!-- <li v-if="isAdmin || isKasir" class="nav-item">
-        <router-link class="nav-link" to="/member">
-          <span class="menu-title">Member</span>
-          <i class="icon-people menu-icon"></i>
-        </router-link>
-      </li>
-      <li v-if="isAdmin" class="nav-item">
-        <router-link class="nav-link" to="/paket">
-          <span class="menu-title">Paket</span>
-          <i class="icon-social-dropbox menu-icon"></i>
-        </router-link>
-      </li>
-      <li v-if="isAdmin" class="nav-item">
-        <router-link class="nav-link" to="/transaksi">
-          <span class="menu-title">Transaksi</span>
-          <i class="icon-social-tumblr menu-icon"></i>
-        </router-link>
-      </li>
-      <li v-if="isOwner" class="nav-item">
-        <router-link class="nav-link" to="/report">
-          <span class="menu-title">Report</span>
-          <i class="icon-screen-desktop menu-icon"></i>
-        </router-link>
-      </li> -->
     </ul>
   </nav>
 </template>

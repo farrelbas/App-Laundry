@@ -98,16 +98,17 @@
                         />
                       </div>
                     </div>
-                    <!-- <div class="form-check form-check-flat form-check-primary">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" />
-                        Remember me
-                      </label>
-                    </div> -->
                     <button type="submit" class="btn btn-primary mr-2">
                       Submit
                     </button>
-                    <button class="btn btn-light">Cancel</button>
+                    <router-link
+                      type="button"
+                      class="btn btn-light"
+                      :to="{
+                        name: 'indexmember',
+                      }"
+                      >Cancel
+                    </router-link>
                   </form>
                 </div>
               </div>

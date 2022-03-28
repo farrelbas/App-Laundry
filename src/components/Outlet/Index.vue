@@ -17,6 +17,7 @@
                         <th>ID Outlet</th>
                         <th>Nama Outlet</th>
                         <th>Alamat Outlet</th>
+                        <th>Kegiatan</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -31,36 +32,44 @@
                           {{ o.alamat }}
                         </td>
                         <td>
-                          <router-link
+                          <button
                             type="button"
                             class="btn btn-inverse-primary btn-rounded btn-icon"
-                            :to="{
-                              name: 'editoutlet',
-                              params: {
-                                id: o.id_outlet,
-                                params: { id: o.id_outlet },
-                              },
-                            }"
                           >
-                            <i class="icon-settings"></i>
-                          </router-link>
-                          <router-link
+                            <router-link
+                              :to="{
+                                name: 'editoutlet',
+                                params: {
+                                  id: o.id_outlet,
+                                  params: { id: o.id_outlet },
+                                },
+                              }"
+                            >
+                              <i class="icon-settings"></i>
+                            </router-link>
+                          </button>
+                          &nbsp;
+                          <button
                             type="button"
                             class="btn btn-inverse-success btn-rounded btn-icon"
-                            :to="{
-                              name: 'detailoutlet',
-                              params: {
-                                id: o.id_outlet,
-                                params: { id: o.id_outlet },
-                              },
-                            }"
                           >
-                            <i class="icon-info"></i>
-                          </router-link>
+                            <router-link
+                              :to="{
+                                name: 'detailoutlet',
+                                params: {
+                                  id: o.id_outlet,
+                                  params: { id: o.id_outlet },
+                                },
+                              }"
+                            >
+                              <i class="icon-info"></i>
+                            </router-link>
+                          </button>
+                          &nbsp;
                           <button
                             type="button"
                             class="btn btn-inverse-danger btn-rounded btn-icon"
-                            @click="hapus(o.id_outlet)"
+                            @click="deleteOutlet(o.id_outlet)"
                           >
                             <i class="icon-ban"></i>
                           </button>
@@ -99,7 +108,7 @@ export default {
     var data = JSON.parse(this.$store.state.datauser);
     var role = data.role;
     if (role == "kasir" || role == "owner") {
-      this.$swal("Failed","Anda Tidak Dapat Mengakses Halaman Ini", "error");
+      this.$swal("Failed", "Anda Tidak Dapat Mengakses Halaman Ini", "error");
       this.$router.push("/");
     }
 
@@ -112,18 +121,42 @@ export default {
       });
   },
   methods: {
-    hapus(id_outlet) {
-      this.axios
-        .delete(
-          `http://localhost/laundry_baru_8/public/api/delete_outlet/${id_outlet}`,
-          {
-            headers: { Authorization: `Bearer ` + this.$store.state.token },
-          }
-        )
-        .then(() => {
-          let i = this.outlet.map((item) => item.id_outlet).indexOf(id_outlet);
-          this.outlet.splice(i, 1);
-        });
+    deleteOutlet(id_outlet) {
+      this.$swal({
+        title: "Are you sure?",
+        text: "You can't revert your action",
+        type: "Warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes Delete it!",
+        cancelButtonText: "No, Keep it!",
+        showCloseButton: true,
+        showLoaderOnConfirm: true,
+      }).then((result) => {
+        if (result.value) {
+          this.$swal(
+            "Deleted",
+            "You successfully deleted this file",
+            "success",
+            this.axios
+              .delete(
+                `http://localhost/laundry_baru_8/public/api/delete_outlet/${id_outlet}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ` + this.$store.state.token,
+                  },
+                }
+              )
+              .then(() => {
+                let i = this.member
+                  .map((item) => item.id_outlet)
+                  .indexOf(id_outlet);
+                this.member.splice(i, 1);
+              })
+          );
+        } else {
+          this.$swal("Cancelled", "Your Data Is Still Intact", "info");
+        }
+      });
     },
   },
 };

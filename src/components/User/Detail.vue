@@ -20,7 +20,6 @@
                               <th class="font-weight-bold">Icon</th>
                               <th class="font-weight-bold">Id User</th>
                               <th class="font-weight-bold">Username</th>
-                              <!-- <th class="font-weight-bold">Password</th> -->
                               <th class="font-weight-bold">Role</th>
                               <th class="font-weight-bold">Id Outlet</th>
                             </tr>
@@ -32,7 +31,6 @@
                               </td>
                               <td>{{ user.id }}</td>
                               <td>{{ user.username }}</td>
-                              <!-- <td>{{ user.password }}</td> -->
                               <td>{{ user.role }}</td>
                               <td>{{ user.id_outlet }}</td>
                             </tr>

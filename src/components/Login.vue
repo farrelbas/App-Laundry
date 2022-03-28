@@ -60,15 +60,6 @@
                   </div>
                   <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
-                <div class="mb-2">
-                  <button
-                    type="button"
-                    class="btn btn-block btn-facebook auth-form-btn"
-                  >
-                    <i class="icon-social-facebook mr-2"></i>Connect using
-                    facebook
-                  </button>
-                </div>
               </form>
               <div class="text-center mt-4 font-weight-light">
                 Don't have an account?
@@ -103,6 +94,7 @@ export default {
           if (res.data.success) {
             this.$store.commit("setToken", res.data.token);
             this.$store.commit("setUser", JSON.stringify(res.data.user));
+            this.$store.commit("setOutlet", JSON.stringify(res.data.outlet));
             this.$router.push("/");
           }
         })

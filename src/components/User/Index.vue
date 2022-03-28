@@ -33,7 +33,8 @@
                                 <th class="font-weight-bold">Username</th>
                                 <!-- <th class="font-weight-bold">Password</th> -->
                                 <th class="font-weight-bold">Role</th>
-                                <th class="font-weight-bold">Id Outlet</th>
+                                <th class="font-weight-bold">Nama Outlet</th>
+                                <th class="font-weight-bold">Kegiatan</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -42,7 +43,7 @@
                                   {{ index + 1 }}
                                 </td>
                                 <td>
-                                  {{ u.nama }}
+                                  {{ u.name }}
                                 </td>
                                 <td>
                                   {{ u.username }}
@@ -54,10 +55,10 @@
                                   {{ u.role }}
                                 </td>
                                 <td>
-                                  {{ u.id_outlet }}
+                                  {{ u.nama }}
                                 </td>
                                 <td>
-                                  <router-link
+                                  <button
                                     type="button"
                                     class="
                                       btn
@@ -65,17 +66,21 @@
                                       btn-rounded
                                       btn-icon
                                     "
-                                    :to="{
-                                      name: 'edituser',
-                                      params: {
-                                        id: u.id,
-                                        params: { id: u.id },
-                                      },
-                                    }"
                                   >
-                                    <i class="icon-settings"></i>
-                                  </router-link>
-                                  <router-link
+                                    <router-link
+                                      :to="{
+                                        name: 'edituser',
+                                        params: {
+                                          id: u.id,
+                                          params: { id: u.id },
+                                        },
+                                      }"
+                                    >
+                                      <i class="icon-settings"></i>
+                                    </router-link>
+                                  </button>
+                                  &nbsp;
+                                  <button
                                     type="button"
                                     class="
                                       btn
@@ -83,16 +88,20 @@
                                       btn-rounded
                                       btn-icon
                                     "
-                                    :to="{
-                                      name: 'detailuser',
-                                      params: {
-                                        id: u.id,
-                                        params: { id: u.id },
-                                      },
-                                    }"
                                   >
-                                    <i class="icon-info"></i>
-                                  </router-link>
+                                    <router-link
+                                      :to="{
+                                        name: 'detailuser',
+                                        params: {
+                                          id: u.id,
+                                          params: { id: u.id },
+                                        },
+                                      }"
+                                    >
+                                      <i class="icon-info"></i>
+                                    </router-link>
+                                  </button>
+                                  &nbsp;
                                   <button
                                     type="button"
                                     class="
@@ -175,7 +184,7 @@ export default {
     var data = JSON.parse(this.$store.state.datauser);
     var role = data.role;
     if (role == "owner" || role == "kasir") {
-      this.$swal("Failed","Anda Tidak Dapat Mengakses Halaman Ini", "error");
+      this.$swal("Failed", "Anda Tidak Dapat Mengakses Halaman Ini", "error");
       this.$router.push("/");
     }
 

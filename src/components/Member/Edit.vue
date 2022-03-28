@@ -45,68 +45,21 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-3 col-form-label"
+                      <label
+                        for="exampleInputUsername2"
+                        class="col-sm-3 col-form-label"
                         >Jenis Kelamin</label
                       >
-                      <div class="col-sm-4">
-                        <div class="form-check">
-                          <label
-                            v-if="member.jenis_kelamin == 'Laki-laki'"
-                            class="form-check-label"
-                          >
-                            <input
-                              type="radio"
-                              class="form-check-input"
-                              name="membershipRadios"
-                              id="membershipRadios1"
-                              value="Laki-laki"
-                              v-model="member.jenis_kelamin"
-                              checked
-                            />
-                            Laki-Laki
-                          </label>
-                          <label v-else class="form-check-label">
-                            <input
-                              type="radio"
-                              class="form-check-input"
-                              name="membershipRadios"
-                              id="membershipRadios1"
-                              value="Laki-laki"
-                              v-model="member.jenis_kelamin"
-                              checked
-                            />
-                            Laki-Laki
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-sm-5">
-                        <div class="form-check">
-                          <label
-                            v-if="member.jenis_kelamin == 'Perempuan'"
-                            class="form-check-label"
-                          >
-                            <input
-                              type="radio"
-                              class="form-check-input"
-                              name="membershipRadios"
-                              id="membershipRadios2"
-                              value="Perempuan"
-                              v-model="member.jenis_kelamin"
-                            />
-                            Perempuan
-                          </label>
-                          <label v-else class="form-check-label">
-                            <input
-                              type="radio"
-                              class="form-check-input"
-                              name="membershipRadios"
-                              id="membershipRadios2"
-                              value="Perempuan"
-                              v-model="member.jenis_kelamin"
-                            />
-                            Perempuan
-                          </label>
-                        </div>
+                      <div class="col-sm-9">
+                        <select
+                          class="form-control"
+                          placeholder="Pick Role"
+                          id="exampleFormControlSelect2"
+                          v-model="member.jenis_kelamin"
+                        >
+                          <option value="Laki-laki">Laki-laki</option>
+                          <option value="Perempuan">Perempuan</option>
+                        </select>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -125,12 +78,6 @@
                         />
                       </div>
                     </div>
-                    <!-- <div class="form-check form-check-flat form-check-primary">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" />
-                        Remember me
-                      </label>
-                    </div> -->
                     <button type="submit" class="btn btn-primary mr-2">
                       Submit
                     </button>
@@ -178,18 +125,6 @@ export default {
           this.$router.push("/member");
         })
         .catch((err) => console.log(err));
-      //   this.axios
-      //     .put(
-      //       "http://localhost/laundry_baru_8/public/api/update_member/{id_member}",
-      //       this.member,
-      //       {
-      //         headers: { Authorization: "Bearer" + this.$store.state.token },
-      //       }
-      //     )
-      //     .then(() => {
-      //       this.$router.push("/member");
-      //     })
-      //     .catch((err) => console.log(err));
     },
   },
 };
