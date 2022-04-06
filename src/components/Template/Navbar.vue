@@ -256,7 +256,7 @@ export default {
         if (!res.data.success) {
           this.$store.commit("clearToken");
           this.$store.commit("clearUser");
-          // this.$awal("Failed", "Sesi Anda Sudah Habis", "error");
+          this.$awal("Error", "Sesi Anda Sudah Habis", "error");
           this.$router.push("/login");
         }
       });

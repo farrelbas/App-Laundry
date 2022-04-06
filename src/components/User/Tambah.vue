@@ -24,7 +24,7 @@
                           class="form-control"
                           id="exampleInputUsername2"
                           placeholder="Masukan Nama"
-                          v-model="user.nama"
+                          v-model="user.name"
                         />
                       </div>
                     </div>

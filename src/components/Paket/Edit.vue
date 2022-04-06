@@ -40,7 +40,7 @@
                           type="text"
                           class="form-control"
                           id="exampleInputUsername2"
-                          placeholder="Masukan Alamat"
+                          placeholder="Masukan Harga"
                           v-model="paket.harga"
                         />
                       </div>

@@ -110,7 +110,7 @@
                                       btn-rounded
                                       btn-icon
                                     "
-                                    @click="hapus(u.id)"
+                                    @click="deleteUser(u.id)"
                                   >
                                     <i class="icon-ban"></i>
                                   </button>
@@ -197,18 +197,54 @@ export default {
       });
   },
   methods: {
-    hapus(id) {
-      this.axios
-        .delete(
-          `http://localhost/laundry_baru_8/public/api/delete_user/${id}`,
-          {
-            headers: { Authorization: `Bearer ` + this.$store.state.token },
-          }
-        )
-        .then(() => {
-          let i = this.user.map((item) => item.id).indexOf(id);
-          this.user.splice(i, 1);
-        });
+    deleteUser(id) {
+      this.$swal({
+        title: "Are you sure?",
+        text: "You can't revert your action",
+        type: "Warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes Delete it!",
+        cancelButtonText: "No, Keep it!",
+        showCloseButton: true,
+        showLoaderOnConfirm: true,
+      }).then((result) => {
+        if (result.value) {
+          this.$swal(
+            "Deleted",
+            "You successfully deleted this file",
+            "success",
+            this.axios
+              .delete(
+                `http://localhost/laundry_baru_8/public/api/delete_user/${id}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ` + this.$store.state.token,
+                  },
+                }
+              )
+              .then((result) => {
+                if (result.data.success) {
+                  this.$swal("Success", result.data.message, "success");
+                  let i = this.user
+                    .map((item) => item.id)
+                    .indexOf(id);
+                  this.user.splice(i, 1);
+                }
+              })
+              .catch(() => {
+                this.$swal("Cancelled", "Your Data Is Still Intact", "info");
+              })
+          );
+        } else {
+          this.$swal({
+            title: "Cancelled",
+            text: "Your Data Is Still Intact",
+            type: "Warning",
+            confirmButtonText: "Yes Delete it!",
+            cancelButtonText: "No, Keep it!",
+          });
+        }
+      });
     },
   },
 };

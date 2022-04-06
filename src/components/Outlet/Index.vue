@@ -146,15 +146,27 @@ export default {
                   },
                 }
               )
-              .then(() => {
-                let i = this.member
-                  .map((item) => item.id_outlet)
-                  .indexOf(id_outlet);
-                this.member.splice(i, 1);
+              .then((result) => {
+                if (result.data.success) {
+                  this.$swal("Success", result.data.message, "success");
+                  let i = this.outlet
+                    .map((item) => item.id_outlet)
+                    .indexOf(id_outlet);
+                  this.outlet.splice(i, 1);
+                }
+              })
+              .catch(() => {
+                this.$swal("Cancelled", "Your Data Is Still Intact", "info");
               })
           );
         } else {
-          this.$swal("Cancelled", "Your Data Is Still Intact", "info");
+          this.$swal({
+            title: "Cancelled",
+            text: "Your Data Is Still Intact",
+            type: "Warning",
+            confirmButtonText: "Yes Delete it!",
+            cancelButtonText: "No, Keep it!",
+          });
         }
       });
     },

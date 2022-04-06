@@ -97,11 +97,8 @@
                                       <td v-else>
                                         {{ t.tgl_bayar | moment("DD/MM/YYYY") }}
                                       </td>
-                                      <td v-if="t.subtotal === null">-</td>
+                                      <td v-if="t.subtotal === null">0</td>
                                       <td v-else>Rp {{ t.subtotal }}</td>
-                                      <!-- <td>
-                                        {{ t.tgl_bayar | moment("DD/MM/YYYY") }}
-                                      </td> -->
                                       <td>{{ t.name }}</td>
                                     </tr>
                                   </tbody>
